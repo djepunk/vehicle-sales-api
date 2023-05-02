@@ -26,7 +26,10 @@ class KendaraanRepository
 
   public function create($data)
   {
-    return $this->model->create($data);
+    $newData = new $this->model;
+    $newData->tahun_keluaran = $data['tahun_keluaran'];
+    return $newData->save();
+    // return $this->model->create($data);
   }
 
   public function update($id, $data): Object
