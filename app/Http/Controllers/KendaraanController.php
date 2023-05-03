@@ -45,4 +45,25 @@ class KendaraanController extends Controller
         $this->kendaraanRepository->delete($id);
         return response()->json(null, 204);
     }
+
+    public function getStokAll()
+    {
+        $stokKendaraan = $this->kendaraanRepository->getStokAll();
+
+        return response()->json($stokKendaraan);
+    }
+
+    public function getStokMotor()
+    {
+        $stokKendaraan = $this->kendaraanRepository->getStokMotor();
+
+        return response()->json($stokKendaraan);
+    }
+
+    public function getStokMobil()
+    {
+        $stokKendaraan = $this->kendaraanRepository->getStokMobil();
+
+        return response()->json($stokKendaraan);
+    }
 }

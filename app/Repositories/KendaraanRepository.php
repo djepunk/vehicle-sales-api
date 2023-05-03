@@ -40,4 +40,68 @@ class KendaraanRepository implements KendaraanRepositoryInterface
     $model = $this->getById($id);
     $model->delete();
   }
+
+  public function getStokAll()
+  {
+    $stokKendaraan = Kendaraan::raw(function ($collection) {
+      return $collection->aggregate([
+        [
+          '$group' => [
+            '_id' => '$nama',
+            'stok' => ['$sum' => '$stok']
+          ]
+        ]
+      ]);
+    });
+
+    return $stokKendaraan;
+  }
+
+  public function getStokMotor()
+  {
+    $stokKendaraan = Kendaraan::raw(function ($collection) {
+      return $collection->aggregate([
+        [
+          '$match' => [
+            'motor' => [
+              '$exists' => true,
+              '$ne' => null
+            ]
+          ]
+        ],
+        [
+          '$group' => [
+            '_id' => '$nama',
+            'stok' => ['$sum' => '$stok']
+          ]
+        ]
+      ]);
+    });
+
+    return $stokKendaraan;
+  }
+
+  public function getStokMobil()
+  {
+    $stokKendaraan = Kendaraan::raw(function ($collection) {
+      return $collection->aggregate([
+        [
+          '$match' => [
+            'mobil' => [
+              '$exists' => true,
+              '$ne' => null
+            ]
+          ]
+        ],
+        [
+          '$group' => [
+            '_id' => '$nama',
+            'stok' => ['$sum' => '$stok']
+          ]
+        ]
+      ]);
+    });
+
+    return $stokKendaraan;
+  }
 }

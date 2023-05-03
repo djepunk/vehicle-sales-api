@@ -26,5 +26,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::post('/addkendaraan', [KendaraanController::class, 'addKendaraan']);
 // Route::post('/addkendaraan', [KendaraanController::class, 'addKendaraan']);
 Route::resource('kendaraan', KendaraanController::class);
+Route::get('/kendaraans/stokAll', [KendaraanController::class, 'getStokAll']);
+Route::get('/kendaraans/stokMotor', [KendaraanController::class, 'getStokMotor']);
+Route::get('/kendaraans/stokMobil', [KendaraanController::class, 'getStokMobil']);
 Route::resource('motor', MotorController::class);
 Route::resource('mobil', MobilController::class);

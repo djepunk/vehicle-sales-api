@@ -13,11 +13,13 @@ class Kendaraan extends Eloquent
         'tahun_keluaran',
         'warna',
         'harga',
+        'nama',
+        'stok',
         'motor',
         'mobil'
     ];
 
-    protected $embedded = ['motor', 'mobil'];
+    protected $embedded = ['motors', 'mobils'];
 
     public function motor()
     {
