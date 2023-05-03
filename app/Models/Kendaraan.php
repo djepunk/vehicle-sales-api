@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Kendaraan extends Model
+class Kendaraan extends Eloquent
 {
     protected $connection = 'mongodb';
     protected $collection = 'kendaraans';

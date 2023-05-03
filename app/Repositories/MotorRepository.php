@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Kendaraan;
+use App\Models\Motor;
 
-class KendaraanRepository implements KendaraanRepositoryInterface
+class MotorRepository implements MotorRepositoryInterface
 {
   protected $model;
 
-  public function __construct(Kendaraan $model)
+  public function __construct(Motor $model)
   {
     $this->model = $model;
   }

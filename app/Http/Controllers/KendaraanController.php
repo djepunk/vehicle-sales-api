@@ -2,44 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\KendaraanService;
+use App\Repositories\KendaraanRepositoryInterface;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
 {
-    protected $kendaraanService;
+    protected $kendaraanRepository;
 
-    public function __construct(KendaraanService $kendaraanService)
+    public function __construct(KendaraanRepositoryInterface $kendaraanRepository)
     {
-        $this->kendaraanService = $kendaraanService;
+        $this->kendaraanRepository = $kendaraanRepository;
     }
 
-    public function getKendaraan()
+    public function index()
     {
-        try {
-            $result =  $this->kendaraanService->getAll();
-        } catch (\Throwable $th) {
-            $result = [
-                'status' => 500,
-                'error' => $th->getMessage()
-            ];
-        }
-
-        return response()->json($result);
+        $kendaraans = $this->kendaraanRepository->getAll();
+        return response()->json($kendaraans);
     }
 
-    public function addKendaraan(Request $request)
+    public function store(Request $request)
     {
-        $result = ['status' => 201];
-        try {
-            $result['data'] =  $this->kendaraanService->create($request);
-        } catch (\Throwable $th) {
-            $result = [
-                'status' => 422,
-                'error' => $th->getMessage()
-            ];
-        }
+        $data = $request->all();
+        $kendaraan = $this->kendaraanRepository->create($data);
+        return response()->json($kendaraan, 201);
+    }
 
-        return response()->json($result, $result['status']);
+    public function show($id)
+    {
+        $kendaraan = $this->kendaraanRepository->getById($id);
+        return response()->json($kendaraan);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        $kendaraan = $this->kendaraanRepository->update($id, $data);
+        return response()->json($kendaraan);
+    }
+
+    public function destroy($id)
+    {
+        $this->kendaraanRepository->delete($id);
+        return response()->json(null, 204);
     }
 }

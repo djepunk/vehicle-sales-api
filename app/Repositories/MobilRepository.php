@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Kendaraan;
+use App\Models\Mobil;
 
-class KendaraanRepository implements KendaraanRepositoryInterface
+class MobilRepository implements MobilRepositoryInterface
 {
   protected $model;
 
-  public function __construct(Kendaraan $model)
+  public function __construct(Mobil $model)
   {
     $this->model = $model;
   }
