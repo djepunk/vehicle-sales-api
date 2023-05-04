@@ -11,8 +11,8 @@ class Penjualan extends Kendaraan
     protected $fillable = [
         'kendaraan_id',
         'tanggal_jual',
-        'harga_jual',
         'nama_pembeli',
+        'harga_jual',
         'jumlah',
         'total_harga'
     ];
