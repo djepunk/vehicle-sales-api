@@ -6,7 +6,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Penjualan extends Kendaraan
 {
-    protected $collection = 'penjualan';
+    protected $collection = 'penjualans';
 
     protected $fillable = [
         'kendaraan_id',

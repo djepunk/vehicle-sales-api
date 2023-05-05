@@ -11,6 +11,7 @@ class Kendaraan extends Eloquent
 
     protected $fillable = [
         'tahun_keluaran',
+        'kendaraan_sku',
         'warna',
         'harga',
         'nama',

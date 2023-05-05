@@ -28,10 +28,10 @@ class PenjualanRepository implements PenjualanRepositoryInterface
     $kendaraan->save();
 
     $penjualan = new Penjualan();
-    $penjualan->kendaraan_id      = $id;
+    $penjualan->kendaraan_id      = $kendaraan->kendaraan_sku;
     $penjualan->tanggal_penjualan = $request->tanggal_penjualan;
     $penjualan->nama_pembeli      = $request->nama_pembeli;
-    $penjualan->harga_jual      = $request->harga_jual;
+    $penjualan->harga_jual        = $request->harga_jual;
     $penjualan->jumlah            = $request->jumlah;
     $penjualan->total_harga       = $request->total_harga;
 

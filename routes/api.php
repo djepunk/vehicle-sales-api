@@ -4,6 +4,7 @@ use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\MotorController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PenjualanPerKendaraanController;
 use App\Models\Kendaraan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('kendaraan', KendaraanController::class);
 Route::resource('motor', MotorController::class);
 Route::resource('mobil', MobilController::class);
+
 Route::get('/kendaraans/stokAll', [KendaraanController::class, 'getStokAll']);
 Route::get('/kendaraans/stokMotor', [KendaraanController::class, 'getStokMotor']);
 Route::get('/kendaraans/stokMobil', [KendaraanController::class, 'getStokMobil']);
 
 //Routing Penjualan
 Route::post('kendaraans/penjualan/{id}', [PenjualanController::class, 'penjualan']);
+Route::get('kendaraans/penjualanPerKendaraan', [PenjualanPerKendaraanController::class, 'getPenjualanPerKendaraan']);
